@@ -62,7 +62,7 @@ Add the following dependency to `build.sbt`:
 ### Instantiate a memory based LuceneIndex with StandardAnalyzer
 
 ```scala
-import import com.giltgroupe.lucene._
+import com.gilt.lucene._
 
 val index = new ReadableLuceneIndex
   with LuceneStandardAnalyzer
@@ -72,7 +72,7 @@ val index = new ReadableLuceneIndex
 ### Instantiate a filesystem based Lucene with StandardAnalyzer
 
 ```scala
-import import com.giltgroupe.lucene._
+import com.gilt.lucene._
 
 val index = new ReadableLuceneIndex
   with LuceneStandardAnalyzer 
@@ -86,7 +86,7 @@ This will create a `SimpleFSDirectory` based index in the `index` sub-directory 
 Since this is a very common usage, the above can be shortened to:
 
 ```scala
-import import com.giltgroupe.lucene._
+import com.gilt.lucene._
 
 val index = new ReadableLuceneIndex
   with LuceneStandardAnalyzer 
@@ -96,7 +96,7 @@ val index = new ReadableLuceneIndex
 In case you prefer to use `MMapDirectory` instead of `SimpleFSDirectory` you just have to switch the `DirectoryCreator` component:
 
 ```scala
-import import com.giltgroupe.lucene._
+import com.gilt.lucene._
 
 val index = new ReadableLuceneIndex
   with LuceneStandardAnalyzer 
@@ -109,8 +109,8 @@ val index = new ReadableLuceneIndex
 
 ```scala
 import org.apache.lucene.document.Document
-import com.giltgroupe.lucene.LuceneFieldHelpers._
-import com.giltgroupe.lucene.LuceneText._
+import com.gilt.lucene.LuceneFieldHelpers._
+import com.gilt.lucene.LuceneText._
 
 val doc = new Document()
 doc.addIndexedStoredField("string_field", "some_string")
@@ -133,8 +133,8 @@ The `LuceneText` type is just a wrapper around `String` to help Lucene different
 
 ```scala
 import org.apache.lucene.document.Document
-import com.giltgroupe.lucene._
-import com.giltgroupe.lucene.LuceneFieldHelpers._
+import com.gilt.lucene._
+import com.gilt.lucene.LuceneFieldHelpers._
 
 val index = new ReadableLuceneIndex
   with WritableLuceneIndex
@@ -157,9 +157,9 @@ If you provide an implicit type class to convert an object to a Lucene Document,
 
 ```scala
 import org.apache.lucene.document.Document
-import com.giltgroupe.lucene._
-import com.giltgroupe.lucene.LuceneFieldHelpers._
-import com.giltgroupe.lucene.LuceneDocumentAdder._
+import com.gilt.lucene._
+import com.gilt.lucene.LuceneFieldHelpers._
+import com.gilt.lucene.LuceneDocumentAdder._
 
 object Example {
 
