@@ -62,7 +62,7 @@ Add the following dependency to `build.sbt`:
 ### Instantiate a memory based LuceneIndex with StandardAnalyzer
 
 ```scala
-import import com.gilt.lucene._
+import com.gilt.lucene._
 
 val index = new ReadableLuceneIndex
   with LuceneStandardAnalyzer
@@ -72,7 +72,7 @@ val index = new ReadableLuceneIndex
 ### Instantiate a filesystem based Lucene with StandardAnalyzer
 
 ```scala
-import import com.gilt.lucene._
+import com.gilt.lucene._
 
 val index = new ReadableLuceneIndex
   with LuceneStandardAnalyzer 
@@ -86,7 +86,7 @@ This will create a `SimpleFSDirectory` based index in the `index` sub-directory 
 Since this is a very common usage, the above can be shortened to:
 
 ```scala
-import import com.gilt.lucene._
+import com.gilt.lucene._
 
 val index = new ReadableLuceneIndex
   with LuceneStandardAnalyzer 
@@ -96,7 +96,7 @@ val index = new ReadableLuceneIndex
 In case you prefer to use `MMapDirectory` instead of `SimpleFSDirectory` you just have to switch the `DirectoryCreator` component:
 
 ```scala
-import import com.gilt.lucene._
+import com.gilt.lucene._
 
 val index = new ReadableLuceneIndex
   with LuceneStandardAnalyzer 
