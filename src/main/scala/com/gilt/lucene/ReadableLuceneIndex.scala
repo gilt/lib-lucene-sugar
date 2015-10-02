@@ -1,9 +1,10 @@
 package com.gilt.lucene
 
-import org.apache.lucene.queryparser.classic.QueryParser
 import javax.annotation.Nonnull
-import org.apache.lucene.search.Query
+
 import org.apache.lucene.document.Document
+import org.apache.lucene.queryparser.classic.QueryParser
+import org.apache.lucene.search.{Query, ScoreDoc}
 
 /**
  * Base trait for simple Lucene indexes
@@ -28,6 +29,26 @@ trait ReadableLuceneIndex extends LuceneVersion { self: LuceneDirectory with Luc
       hits.scoreDocs.map { hit =>
         indexSearcher.doc(hit.doc)
       }.toIterable
+
+    }.getOrElse(Iterable.empty)
+  }
+
+  /**
+   * Process a Lucene query string and returns all resulting documents
+   */
+  @Nonnull
+  def searchAllTopDocuments(@Nonnull query: Query, @Nonnull limit: Int): Iterable[Document] = withIndexSearcher { indexSearcherOption =>
+    indexSearcherOption.map { indexSearcher =>
+      val hits = indexSearcher.search(query, limit)
+      def getAllScoreDocs(scoreDocs: Iterable[ScoreDoc]): Iterable[ScoreDoc] = {
+        if (scoreDocs.size == hits.totalHits) scoreDocs
+        else getAllScoreDocs(
+          scoreDocs ++ indexSearcher.searchAfter(scoreDocs.last, query, limit).scoreDocs
+        )
+      }
+      getAllScoreDocs(hits.scoreDocs).map { hit =>
+        indexSearcher.doc(hit.doc)
+      }
 
     }.getOrElse(Iterable.empty)
   }
