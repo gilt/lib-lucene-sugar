@@ -1,0 +1,7 @@
+Few changes 
+
+First of all, awesome work. Few suggested changes are below all are very minor.
+
+1) In LuceneFieldHelper class, it should be   doc.add(new TextField(name, value.text, stored))(Line 74) for LuceneText instead of StringField
+2) Testcase showing the index and search example
+3) README.MD, minor typo's like "import import" repeated import. In the usage example, the StandardAnalyzer should be before WritableLuceneIndex traits else NPE
